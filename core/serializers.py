@@ -88,6 +88,7 @@ class HospitalLoginSerializer(serializers.Serializer):
 # ==========================
 class UserSerializer(serializers.ModelSerializer):
     full_name = serializers.SerializerMethodField(read_only=True)
+    surgeries = serializers.SerializerMethodField()
 
     # دمج بيانات Patient / Donor Profile
     organ_needed = serializers.SerializerMethodField()
@@ -199,6 +200,13 @@ class UserSerializer(serializers.ModelSerializer):
         from .serializers import AlertSerializer
         qs = Alert.objects.filter(user=obj)
         return AlertSerializer(qs, many=True).data
+    
+    def get_surgeries(self, obj):
+        from .serializers import SurgerySerializer
+        # جلب كل العمليات المرتبطة بالمريض
+        qs = Surgery.objects.filter(organ_matching__patient=obj)\
+                            .select_related('doctor', 'hospital', 'organ_matching')
+        return SurgerySerializer(qs, many=True).data
 
 # ==========================
 
