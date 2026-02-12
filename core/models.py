@@ -364,7 +364,7 @@ class Surgery(models.Model):
 
     scheduled_date = models.DateTimeField()
     completed = models.BooleanField(default=False)
-    duration = models.PositiveIntegerField(null=True, blank=True)  
+    duration_minutes = models.PositiveIntegerField(null=True, blank=True)  
     operation_room = models.CharField(max_length=100, null=True, blank=True) 
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -425,7 +425,6 @@ class Alert(models.Model):
 )
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='alerts')
-    message_title = models.TextField()
     message = models.TextField()
     alert_type = models.CharField(max_length=20, choices=ALERT_TYPES)
     read = models.BooleanField(default=False)
