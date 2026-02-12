@@ -425,6 +425,7 @@ class Alert(models.Model):
 )
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='alerts')
+    message_title = models.TextField()
     message = models.TextField()
     alert_type = models.CharField(max_length=20, choices=ALERT_TYPES)
     read = models.BooleanField(default=False)
