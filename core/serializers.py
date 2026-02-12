@@ -497,7 +497,7 @@ class AlertSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Alert
-        fields = ['id', 'user', 'user_detail', 'message', ' message_title', 'alert_type', 'read', 'created_at']
+        fields = ['id', 'user', 'user_detail', 'message', 'alert_type', 'read', 'created_at']
 
     def get_user_detail(self, obj):
         return {"id": obj.user.id, "full_name": f"{obj.user.first_name} {obj.user.last_name}"}
