@@ -364,7 +364,7 @@ class Surgery(models.Model):
 
     scheduled_date = models.DateTimeField()
     completed = models.BooleanField(default=False)
-    duration_minutes = models.PositiveIntegerField(null=True, blank=True)  
+    duration = models.PositiveIntegerField(null=True, blank=True)  
     operation_room = models.CharField(max_length=100, null=True, blank=True) 
 
     created_at = models.DateTimeField(auto_now_add=True)
